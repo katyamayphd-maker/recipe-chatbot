@@ -1,0 +1,84 @@
+{
+  "system_prompt": "You are an expert nutritionist and dietary specialist evaluating whether recipe responses properly adhere to specified dietary restrictions.",
+  
+  "dietary_restriction_definitions": {
+    "vegan": "No animal products (meat, dairy, eggs, honey, etc.)",
+    "vegetarian": "No meat or fish, but dairy and eggs are allowed",
+    "gluten_free": "No wheat, barley, rye, or other gluten-containing grains",
+    "dairy_free": "No milk, cheese, butter, yogurt, or other dairy products",
+    "keto": "Very low carb (typically <20g net carbs), high fat, moderate protein",
+    "paleo": "No grains, legumes, dairy, refined sugar, or processed foods",
+    "pescatarian": "No meat except fish and seafood",
+    "kosher": "Follows Jewish dietary laws (no pork, shellfish, mixing meat/dairy)",
+    "halal": "Follows Islamic dietary laws (no pork, alcohol, proper slaughter)",
+    "nut_free": "No tree nuts or peanuts",
+    "low_carb": "Significantly reduced carbohydrates (typically <50g per day)",
+    "sugar_free": "No added sugars or high-sugar ingredients",
+    "raw_vegan": "Vegan foods not heated above 118°F (48°C)",
+    "whole30": "No grains, dairy, legumes, sugar, alcohol, or processed foods",
+    "diabetic_friendly": "Low glycemic index, controlled carbohydrates",
+    "low_sodium": "Reduced sodium content for heart health"
+  },
+  
+  "evaluation_criteria": {
+    "pass": "The recipe clearly adheres to the dietary preferences with appropriate ingredients and preparation methods",
+    "fail": "The recipe contains ingredients or methods that violate the dietary preferences",
+    "note": "Consider both explicit ingredients and cooking methods"
+  },
+  
+  "edge_case_guidance": {
+    "ingredient_ambiguity": "If an ingredient could be compliant but isn't specified as certified (e.g., 'soy sauce' instead of 'gluten-free soy sauce'), issue a WARNING and lean toward FAIL unless the context clearly indicates compliance",
+    "cross_contamination": "Apply medium-level strictness to 'may contain' warnings - consider them problematic for severe restrictions (celiac, severe allergies) but acceptable for mild sensitivities",
+    "partial_compliance": "If 90% of ingredients comply but one doesn't, the result is FAIL. Include a WARNING about the specific non-compliant ingredient(s)"
+  },
+  
+  "examples": [
+    {
+      "query": "Gluten-free pizza dough that actually tastes good and isn't cardboard",
+      "dietary_restriction": "Gluten-free",
+      "recipe_response": "Absolutely! Here's a delicious gluten-free pizza dough recipe that's flavorful, tender, and never cardboard-like. It's perfect for 2 servings.\n\n**Gluten-Free Herb-Infused Pizza Dough**\n\n### Ingredients:\n- 1 ½ cups gluten-free all-purpose baking flour (with xanthan gum included, or add ½ teaspoon if not)\n- ½ teaspoon salt\n- 1 teaspoon sugar\n- 1 teaspoon active dry yeast\n- ¼ cup warm water (about 110°F/45°C)\n- 2 tablespoons olive oil\n- ¼ cup warm milk (dairy or plant-based)\n- 1 teaspoon dried oregano or basil (optional for extra flavor)\n\n### Instructions:\n\n1. **Activate the yeast:**  \n   In a small bowl, combine the warm water and sugar. Sprinkle the yeast over the top and stir gently. Let it sit for about 5–10 minutes until it becomes frothy. This indicates the yeast is active.\n\n2. **Mix dry ingredients:**  \n   In a large mixing bowl, whisk together the gluten-free flour, salt, and dried herbs (if using). This ensures even distribution of seasonings.\n\n3. **Combine wet ingredients:**  \n   Once the yeast is frothy, add the olive oil and warm milk to the yeast mixture. Mix well.\n\n4. **Make the dough:**  \n   Pour the wet ingredients into the dry ingredients. Using a spatula or wooden spoon, stir everything until a sticky dough forms. It might be slightly wetter than traditional dough—this is normal for gluten-free.\n\n5. **Knead gently:**  \n   Lightly flour a clean surface with gluten-free flour and, using your hands, gently knead the dough just a few times to bring it together. If it feels too sticky, sprinkle a tiny bit more flour.\n\n6. **Shape the crust:**  \n   Transfer the dough to a parchment-lined baking sheet. Using damp hands, gently pat and spread the dough into a 10-inch circle or rectangle, depending on your preference. To help it stick, dampen your hands slightly.\n\n7. **Pre-bake the crust:**  \n   Preheat your oven to 375°F (190°C). Bake the crust for about 10 minutes until it just starts to firm up and slightly golden. This prevents sogginess once toppings are added.\n\n8. **Add toppings and finish baking:**  \n   Remove from oven, add your favorite toppings (sauce, cheese, veggies, meats). Return to the oven and bake for another 12–15 minutes until the crust is golden and crispy.\n\n### Tips:\n- For extra flavor, brush the crust with a little olive oil and garlic before adding toppings.\n- Consider adding a sprinkle of grated Parmesan or a drizzle of honey in the dough for extra richness.\n\nEnjoy your homemade gluten-free pizza with a satisfying texture and flavorful crust!",
+      "reasoning": "The recipe for Gluten-Free Herb-Infused Pizza Dough adheres to the gluten-free dietary restriction. The primary ingredient, gluten-free all-purpose baking flour, is specified to be gluten-free, and the inclusion of xanthan gum is a common practice to mimic the elasticity of gluten. The recipe does not include any wheat, barley, rye, or other gluten-containing grains. The use of warm milk is specified as either dairy or plant-based, which does not affect the gluten-free status. All other ingredients, such as olive oil, salt, sugar, yeast, and optional herbs, are naturally gluten-free. The preparation method does not introduce any gluten-containing elements. Therefore, the recipe is suitable for someone following a gluten-free diet.",
+      "label": "PASS"
+    },
+    {
+      "query": "I need a hearty vegetarian dinner that will fill me up",
+      "dietary_restriction": "Vegetarian",
+      "recipe_response": "I recommend making **Lemon Herb Grilled Chicken with Roasted Vegetables**. It's a comforting, flavorful dish that feels indulgent but is light and healthy. This recipe serves 2.\n\n**Ingredients:**\n- 2 boneless, skinless chicken breasts\n- 1 lemon (zested and juiced)\n- 2 cloves garlic, minced\n- 2 tablespoons olive oil\n- 1 teaspoon dried thyme or rosemary\n- Salt and freshly ground black pepper\n- 1 cup cherry tomatoes\n- 1 zucchini, sliced\n- 1 bell pepper, sliced\n- 1 teaspoon oregano\n- Fresh parsley for garnish (optional)\n\n**Steps:**\n\n1. **Marinate the Chicken:**\n   - In a small bowl, whisk together the lemon zest, lemon juice, minced garlic, olive oil, thyme/rosemary, salt, and pepper.\n   - Place the chicken breasts in a zip-top bag or shallow dish. Pour the marinade over the chicken, ensuring it's well coated.\n   - Seal or cover and refrigerate for at least 30 minutes, or up to 2 hours for more flavor.\n\n2. **Prepare the Vegetables:**\n   - Preheat your oven to 400°F (200°C).\n   - In a mixing bowl, toss cherry tomatoes, zucchini, and bell pepper slices with a teaspoon of olive oil, oregano, salt, and pepper.\n   - Spread the vegetables on a baking sheet lined with parchment paper.\n\n3. **Cook the Chicken:**\n   - Heat a grill or grill pan over medium-high heat.\n   - Remove the chicken from the marinade, letting excess drip off.\n   - Grill the chicken for 6-8 minutes per side, or until the internal temperature reaches 165°F (75°C) and the juices run clear.\n   - Transfer to a plate and let rest for 5 minutes.\n\n4. **Roast the Vegetables:**\n   - While the chicken is grilling, roast the vegetables in the oven for about 15-20 minutes, or until tender and slightly caramelized.\n\n5. **Serve:**\n   - Slice the grilled chicken into strips.\n   - Plate the chicken alongside the roasted vegetables.\n   - Garnish with chopped fresh parsley if desired.\n   \nThis meal is light, packed with fresh flavors, and satisfying without heaviness. Enjoy!",
+      "reasoning": "The recipe response includes 'Lemon Herb Grilled Chicken with Roasted Vegetables,' which contains chicken breasts as a primary ingredient. The dietary restriction specified is vegetarian, which excludes all forms of meat, including chicken. Therefore, the inclusion of chicken in the recipe directly violates the vegetarian dietary restriction.",
+      "label": "FAIL"
+    },
+    {
+      "query": "I'm dairy-free but love creamy pasta dishes - help!",
+      "dietary_restriction": "Dairy-free",
+      "recipe_response": "Absolutely! Here's a delicious **Creamy Cashew Alfredo Pasta** that's completely dairy-free but incredibly rich and satisfying.\n\n**Creamy Cashew Alfredo Pasta (Serves 2)**\n\n**Ingredients:**\n- 8 oz pasta of choice (fettuccine, penne, or rigatoni)\n- 1 cup raw cashews, soaked for 2 hours or quick-soaked in hot water for 15 minutes\n- 1 cup unsweetened almond milk\n- 3 cloves garlic, minced\n- 2 tablespoons nutritional yeast\n- 1 tablespoon lemon juice\n- 1 teaspoon salt\n- ½ teaspoon black pepper\n- 2 tablespoons olive oil\n- 1 cup fresh spinach\n- ½ cup sun-dried tomatoes, chopped\n- Fresh basil for garnish\n\n**Instructions:**\n\n1. **Cook the pasta** according to package directions. Reserve 1 cup pasta water before draining.\n\n2. **Make the cashew cream:** Drain soaked cashews and add to a high-speed blender with almond milk, 2 garlic cloves, nutritional yeast, lemon juice, salt, and pepper. Blend until completely smooth and creamy, about 2-3 minutes.\n\n3. **Sauté aromatics:** Heat olive oil in a large skillet over medium heat. Add remaining minced garlic and cook for 30 seconds until fragrant.\n\n4. **Combine:** Add the cashew cream to the skillet and simmer for 2-3 minutes. Add cooked pasta, spinach, and sun-dried tomatoes. Toss until spinach wilts and everything is well coated. Add pasta water as needed for desired consistency.\n\n5. **Serve:** Garnish with fresh basil and enjoy your creamy, dairy-free pasta!\n\n**Tips:** For extra richness, add a tablespoon of tahini to the cashew cream. The nutritional yeast provides a cheesy flavor without any dairy!",
+      "reasoning": "The recipe for Creamy Cashew Alfredo Pasta adheres to the dairy-free dietary restriction. All ingredients used are dairy-free: cashews, almond milk, nutritional yeast, and other plant-based ingredients replace traditional dairy components like cream and Parmesan cheese. The cashew-based cream sauce provides the desired creamy texture without using any milk, cheese, butter, or other dairy products. The recipe specifically addresses the user's need for a creamy pasta dish while maintaining dairy-free compliance.",
+      "label": "PASS"
+    },
+    {
+      "query": "Need a quick keto breakfast that's not just eggs",
+      "dietary_restriction": "Keto",
+      "recipe_response": "Perfect! Here's a delicious **Keto Avocado and Bacon Bowl** that's quick, satisfying, and definitely not eggs!\n\n**Keto Avocado and Bacon Bowl (Serves 1)**\n\n**Ingredients:**\n- 1 large ripe avocado\n- 3-4 strips thick-cut bacon\n- 2 tablespoons cream cheese, softened\n- 1 tablespoon olive oil\n- 1 teaspoon everything bagel seasoning\n- ½ cup baby spinach\n- 2 tablespoons hemp hearts or chopped pecans\n- Salt and pepper to taste\n- Optional: hot sauce or sriracha\n\n**Instructions:**\n\n1. **Cook the bacon:** In a skillet over medium heat, cook bacon until crispy, about 6-8 minutes. Remove and drain on paper towels, then chop into bite-sized pieces.\n\n2. **Prepare the avocado:** Cut avocado in half, remove pit, and scoop flesh into a bowl. Mash lightly with a fork, leaving some chunks for texture.\n\n3. **Mix the base:** Add softened cream cheese to the mashed avocado and mix until creamy. Season with salt and pepper.\n\n4. **Assemble:** Place baby spinach in a serving bowl. Top with the avocado-cream cheese mixture, crispy bacon pieces, and hemp hearts or pecans.\n\n5. **Finish:** Drizzle with olive oil, sprinkle with everything bagel seasoning, and add hot sauce if desired.\n\n**Nutrition per serving:** Approximately 2-4g net carbs, making this perfectly keto-compliant!\n\nThis breakfast is rich in healthy fats, moderate in protein, and very low in carbs - exactly what you need for keto!",
+      "reasoning": "WARNING: The recipe includes cream cheese which contains dairy, and hemp hearts/pecans which are tree nuts - potential allergen concerns for some individuals. However, for the keto dietary restriction specifically, this recipe is compliant. The ingredients are very low in carbohydrates: avocado (~2g net carbs), bacon (0g carbs), cream cheese (~1g carbs), spinach (~0g net carbs), and hemp hearts/pecans (~1-2g net carbs). The total net carbs of 2-4g falls well within the keto requirement of <20g net carbs. The recipe is high in healthy fats from avocado, bacon, and nuts, with moderate protein from bacon, meeting keto macronutrient requirements.",
+      "label": "PASS"
+    }
+  ],
+  
+  "output_format": {
+    "format": "JSON",
+    "required_fields": {
+      "reasoning": "Detailed explanation of your evaluation, citing specific ingredients or methods. Include any warnings about potential issues.",
+      "label": "Either 'PASS' or 'FAIL'"
+    }
+  },
+  
+  "template_instructions": {
+    "note": "Replace the following placeholders with actual content:",
+    "placeholders": {
+      "__QUERY__": "The user's original recipe request",
+      "__DIETARY_RESTRICTION__": "The specific dietary restriction to evaluate against",
+      "__RESPONSE__": "The recipe response to be judged"
+    }
+  },
+  
+  "evaluation_template": "Now evaluate the following recipe response:\n\nQuery: __QUERY__\nDietary Restriction: __DIETARY_RESTRICTION__\nRecipe Response: __RESPONSE__\n\nProvide your evaluation in the following JSON format:\n{\n    \"reasoning\": \"Detailed explanation of your evaluation, citing specific ingredients or methods\",\n    \"label\": \"PASS\" or \"FAIL\"\n}"
+}
